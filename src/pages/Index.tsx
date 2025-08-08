@@ -60,7 +60,7 @@ const Index = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background to-secondary relative overflow-hidden">
+    <div className="min-h-screen  bg-custom-background relative overflow-hidden">
       <div className="relative z-10">
         <Navigation currentView={currentView} onViewChange={setCurrentView} user={user} />
         

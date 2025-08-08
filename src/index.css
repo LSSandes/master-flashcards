@@ -156,9 +156,25 @@
 }
 
 .bg-custom-background {
-  background-image: url('/path/to/your/image.jpg'); /* Update the path as needed */
+  position: relative;
+  background-image: url('./assets/bg.jpg'); /* Update the path as needed */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-color: rgba(0, 0, 0, 0.5); /* Example drop color */
+}
+
+.bg-custom-background::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.3); /* Adjust opacity and color as needed */
+  z-index: 1; /* Ensure it's above the background but below the content */
+}
+
+.relative {
+  position: relative; /* To position content above the drop color */
+  z-index: 2; /* Ensure your content is above the overlay */
 }

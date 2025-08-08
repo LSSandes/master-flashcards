@@ -12,7 +12,7 @@ interface NavigationProps {
 export default function Navigation({ currentView, onViewChange, user }: NavigationProps) {
   const { signOut } = useAuth();
   return (
-    <nav className="w-full bg-card/50 backdrop-blur-sm border-b border-border">
+    <nav className="w-full bg-card/80 backdrop-blur-sm border-b border-border">
       <div className="max-w-6xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">

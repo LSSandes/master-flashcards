@@ -1,15 +1,19 @@
-import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
-import { useAuth } from '@/hooks/useAuth';
-import { LogOut } from 'lucide-react';
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { useAuth } from "@/hooks/useAuth";
+import { LogOut, NotebookPen, CalendarPlus2, FolderOpen, Eye } from "lucide-react";
 
 interface NavigationProps {
-  currentView: 'study' | 'create' | 'manage';
-  onViewChange: (view: 'study' | 'create' | 'manage') => void;
+  currentView: "Study" | "Create" | "Manage";
+  onViewChange: (view: "Study" | "Create" | "Manage") => void;
   user?: any;
 }
 
-export default function Navigation({ currentView, onViewChange, user }: NavigationProps) {
+export default function Navigation({
+  currentView,
+  onViewChange,
+  user,
+}: NavigationProps) {
   const { signOut } = useAuth();
   return (
     <nav className="w-full bg-card/80 backdrop-blur-sm border-b border-border">
@@ -17,42 +21,47 @@ export default function Navigation({ currentView, onViewChange, user }: Navigati
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <div className="w-8 h-8 bg-gradient-to-br from-primary to-primary-glow rounded-lg flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-sm">CC</span>
+              <span className="text-primary-foreground font-bold text-sm">
+                FC
+              </span>
             </div>
             <h1 className="text-2xl font-bold bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent">
-              Cognition Cards
+              FlashCards
             </h1>
           </div>
-          
+
           <div className="flex items-center space-x-4">
             <Button
-              variant={currentView === 'study' ? 'default' : 'outline'}
-              onClick={() => onViewChange('study')}
+              variant={currentView === "Study" ? "default" : "outline"}
+              onClick={() => onViewChange("Study")}
               className={cn(
-                "transition-all duration-300",
-                currentView === 'study' && "shadow-glow-primary"
+                "transition-all duration-300 border-gray-600",
+                currentView === "Study" && "shadow-glow-primary"
               )}
             >
+              <NotebookPen className="w-4 h-4" />
               Study
             </Button>
             <Button
-              variant={currentView === 'create' ? 'default' : 'outline'}
-              onClick={() => onViewChange('create')}
+              variant={currentView === "Create" ? "default" : "outline"}
+              onClick={() => onViewChange("Create")}
               className={cn(
-                "transition-all duration-300",
-                currentView === 'create' && "shadow-glow-primary"
+                "transition-all duration-300 border-gray-600",
+                currentView === "Create" && "shadow-glow-primary"
               )}
             >
+              <CalendarPlus2 className="w-4 h-4" />
               Create Card
             </Button>
             <Button
-              variant={currentView === 'manage' ? 'default' : 'outline'}
-              onClick={() => onViewChange('manage')}
+              variant={currentView === "Manage" ? "default" : "outline"}
+              onClick={() => onViewChange("Manage")}
               className={cn(
-                "transition-all duration-300",
-                currentView === 'manage' && "shadow-glow-primary"
+                "transition-all duration-300 border-gray-600",
+                currentView === "Manage" && "shadow-glow-primary"
               )}
             >
+              <FolderOpen className="w-4 h-4" />
               Manage Cards
             </Button>
             {user && (

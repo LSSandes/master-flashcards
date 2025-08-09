@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const Index = () => {
-  const [currentView, setCurrentView] = useState<"study" | "create" | "manage">("study");
+  const [currentView, setCurrentView] = useState<"Study" | "Create" | "Manage">("Study");
   const { user, loading: authLoading, isAuthenticated } = useAuth();
   const { cards, loading: cardsLoading, createCard, updateCard } = useFlashcards();
   const navigate = useNavigate();
@@ -65,13 +65,13 @@ const Index = () => {
         <Navigation currentView={currentView} onViewChange={setCurrentView} user={user} />
         
         <main className="container mx-auto px-4 py-8">
-          {currentView === "study" && (
+          {currentView === "Study" && (
             <StudyMode cards={cards} onCardAnswered={handleCardAnswered} />
           )}
-          {currentView === "create" && (
+          {currentView === "Create" && (
             <CreateCard onCardCreated={handleCreateCard} />
           )}
-          {currentView === "manage" && (
+          {currentView === "Manage" && (
             <ManageCards cards={cards} />
           )}
         </main>

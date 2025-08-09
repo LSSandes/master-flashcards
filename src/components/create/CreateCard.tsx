@@ -40,7 +40,7 @@ export default function CreateCard({ onCardCreated }: CreateCardProps) {
   };
 
   return (
-    <div className="max-w-2xl mx-auto animate-slide-up">
+    <div className="max-w-2xl mx-auto animate-slide-up my-10">
       <div className="bg-card/80 backdrop-blur-sm border border-border rounded-2xl p-8 shadow-card">
         <div className="text-center mb-8">
           <h2 className="text-3xl font-bold text-foreground mb-2">Create New Flashcard</h2>

@@ -9,44 +9,44 @@
     /* Core gradient backgrounds */
     --background: 240 10% 5%;
     --foreground: 0 0% 98%;
-    
+
     /* Card system */
     --card: 240 10% 8%;
     --card-foreground: 0 0% 98%;
     --card-hover: 240 8% 12%;
-    
+
     /* Flashcard specific colors */
     --flashcard: 240 12% 10%;
     --flashcard-front: 220 20% 15%;
     --flashcard-back: 260 20% 15%;
-    
+
     /* Learning state colors */
     --success: 142 76% 36%;
     --success-foreground: 0 0% 98%;
     --success-glow: 142 76% 36%;
-    
+
     --error: 0 84% 60%;
     --error-foreground: 0 0% 98%;
     --error-glow: 0 84% 60%;
-    
+
     --warning: 48 96% 53%;
     --warning-foreground: 0 0% 5%;
-    
+
     /* Primary brand colors */
     --primary: 262 83% 58%;
     --primary-foreground: 0 0% 98%;
     --primary-glow: 262 83% 58%;
-    
+
     --secondary: 240 5% 84%;
     --secondary-foreground: 240 10% 15%;
-    
+
     /* UI elements */
     --muted: 240 5% 25%;
     --muted-foreground: 240 5% 65%;
-    
+
     --accent: 262 83% 58%;
     --accent-foreground: 0 0% 98%;
-    
+
     --border: 240 6% 20%;
     --input: 240 6% 15%;
     --ring: 262 83% 58%;
@@ -54,23 +54,35 @@
     --radius: 0.5rem;
 
     /* Gradients for beautiful effects */
-    --gradient-primary: linear-gradient(135deg, hsl(262 83% 58%), hsl(280 83% 68%));
-    --gradient-success: linear-gradient(135deg, hsl(142 76% 36%), hsl(160 76% 46%));
+    --gradient-primary: linear-gradient(
+      135deg,
+      hsl(262 83% 58%),
+      hsl(280 83% 68%)
+    );
+    --gradient-success: linear-gradient(
+      135deg,
+      hsl(142 76% 36%),
+      hsl(160 76% 46%)
+    );
     --gradient-error: linear-gradient(135deg, hsl(0 84% 60%), hsl(15 84% 70%));
     --gradient-card: linear-gradient(145deg, hsl(240 12% 10%), hsl(240 8% 12%));
-    --gradient-bg: radial-gradient(ellipse at top, hsl(262 83% 15%), hsl(240 10% 5%));
-    
+    --gradient-bg: radial-gradient(
+      ellipse at top,
+      hsl(262 83% 15%),
+      hsl(240 10% 5%)
+    );
+
     /* Shadows and glows */
     --shadow-card: 0 8px 32px -8px hsl(240 10% 3% / 0.4);
     --shadow-card-hover: 0 12px 40px -8px hsl(240 10% 3% / 0.6);
     --glow-primary: 0 0 40px hsl(262 83% 58% / 0.3);
     --glow-success: 0 0 40px hsl(142 76% 36% / 0.3);
     --glow-error: 0 0 40px hsl(0 84% 60% / 0.3);
-    
+
     /* Animation values */
     --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
     --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
-    
+
     --sidebar-background: 240 10% 8%;
     --sidebar-foreground: 240 5% 85%;
     --sidebar-primary: 262 83% 58%;
@@ -98,7 +110,7 @@
   .card-flip {
     perspective: 1000px;
   }
-  
+
   .card-flip-inner {
     position: relative;
     width: 100%;
@@ -107,64 +119,75 @@
     transition: transform 0.8s var(--ease-spring);
     transform-style: preserve-3d;
   }
-  
+
   .card-flip-inner.flipped {
     transform: rotateY(180deg);
   }
-  
-  .card-front, .card-back {
+
+  .card-front,
+  .card-back {
     position: absolute;
     width: 100%;
     height: 100%;
     backface-visibility: hidden;
     border-radius: 16px;
   }
-  
+
   .card-back {
     transform: rotateY(180deg);
   }
-  
+
   .glow-success {
     box-shadow: var(--glow-success);
   }
-  
+
   .glow-error {
     box-shadow: var(--glow-error);
   }
-  
+
   .glow-primary {
     box-shadow: var(--glow-primary);
   }
-  
+
   .flash-success {
     animation: flash-success 0.6s ease-out;
   }
-  
+
   .flash-error {
     animation: flash-error 0.6s ease-out;
   }
 }
 
 @keyframes flash-success {
-  0%, 100% { box-shadow: var(--shadow-card); }
-  50% { box-shadow: var(--glow-success); }
+  0%,
+  100% {
+    box-shadow: var(--shadow-card);
+  }
+  50% {
+    box-shadow: var(--glow-success);
+  }
 }
 
 @keyframes flash-error {
-  0%, 100% { box-shadow: var(--shadow-card); }
-  50% { box-shadow: var(--glow-error); }
+  0%,
+  100% {
+    box-shadow: var(--shadow-card);
+  }
+  50% {
+    box-shadow: var(--glow-error);
+  }
 }
 
 .bg-custom-background {
   position: relative;
-  background-image: url('./assets/bg.jpg'); /* Update the path as needed */
+  background-image: url("./assets/bg.jpg"); /* Update the path as needed */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
 
 .bg-custom-background::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;

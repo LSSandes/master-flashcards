@@ -105,7 +105,7 @@ export default function StudyMode({ cards, onCardAnswered }: StudyModeProps) {
 
     return (
       <div className="text-center py-16 animate-slide-up">
-        <div className="w-32 h-32 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-6">
+        <div className="w-32 h-32 bg-yellow-300/50 rounded-full flex items-center justify-center mx-auto mb-6">
           <span className="text-6xl">⏰</span>
         </div>
         <h2 className="text-3xl font-bold text-foreground mb-4">

@@ -71,14 +71,14 @@ const Index = () => {
 
   return (
     <div className="min-h-screen  bg-custom-background relative overflow-hidden">
-      <div className="relative z-10">
+      <div className="relative">
         <Navigation
           currentView={currentView}
           onViewChange={setCurrentView}
           user={user}
         />
 
-        <main className="container mx-auto px-4 py-8">
+        <main className="container mx-auto px-4 py-8 z-20">
           {currentView === "Study" && (
             <StudyMode cards={cards} onCardAnswered={handleCardAnswered} />
           )}

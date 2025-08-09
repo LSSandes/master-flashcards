@@ -120,7 +120,7 @@ export default function StudyMode({ cards, onCardAnswered }: StudyModeProps) {
 
   return (
     <div className="max-w-4xl mx-auto py-8 animate-slide-up">
-      <div className="text-center mb-8">
+      <div className="text-center mb-8 ">
         <h2 className="text-3xl font-bold text-foreground mb-2">
           Study Session
         </h2>
@@ -134,7 +134,7 @@ export default function StudyMode({ cards, onCardAnswered }: StudyModeProps) {
         definition={currentCard.definition}
         onCorrect={() => handleAnswer(true)}
         onIncorrect={() => handleAnswer(false)}
-        className="mb-8"
+        className="mb-8 backdrop-blur-sm"
       />
 
       <div className="text-center">

@@ -48,7 +48,7 @@ export default function FlashCard({
     <div className={cn("w-full max-w-md mx-auto", className)}>
       <div
         className={cn(
-          "card-flip h-80 relative transition-all duration-300",
+          "card-flip h-80 relative transition-all duration-300 ",
           flashType === "success" && "flash-success",
           flashType === "error" && "flash-error"
         )}
@@ -60,7 +60,7 @@ export default function FlashCard({
           )}
         >
           {/* Front of card - Word */}
-          <div className="card-front bg-gradient-to-br from-flashcard-front to-flashcard bg-card border border-border shadow-card hover:shadow-card-hover flex flex-col items-center justify-center p-8 transition-all duration-300">
+          <div className="z-20 card-front bg-gradient-to-br from-flashcard-front to-flashcard bg-card border border-border shadow-card hover:shadow-card-hover flex flex-col items-center justify-center p-8 transition-all duration-300">
             <div className="text-center">
               <h2 className="text-3xl font-bold text-foreground mb-4">
                 {word}
@@ -79,7 +79,7 @@ export default function FlashCard({
           </div>
 
           {/* Back of card - Definition */}
-          <div className="card-back bg-gradient-to-br from-flashcard-back to-flashcard bg-card border border-border shadow-card flex flex-col items-center justify-center p-8">
+          <div className="z-20 card-back bg-gradient-to-br from-flashcard-back to-flashcard bg-card border border-border shadow-card flex flex-col items-center justify-center p-8">
             <div className="text-center flex-1 flex flex-col justify-center">
               <h3 className="text-xl font-semibold text-muted-foreground mb-2">
                 Definition

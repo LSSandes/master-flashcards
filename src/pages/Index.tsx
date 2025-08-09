@@ -29,7 +29,7 @@ const Index = () => {
     return (
       <div className="min-h-screen flex items-center justify-center bg-first-background lg:p-32 p-4">
         <div className=" text-center z-10 flex flex-col gap-10">
-          <div className="lg:text-7xl text-4xl font-bold p-4 max-w-4xl text-left">
+          <div className="lg:text-7xl text-4xl font-bold p-4 max-w-4xl lg:text-left text-center">
             Learn new language with master flashcards
           </div>
 

@@ -240,4 +240,33 @@
   z-index: 2; /* Ensure your content is above the overlay */
 }
 
+/* For WebKit browsers (Chrome, Safari, Edge) */
+.scrollbar-modern::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
 
+.scrollbar-modern::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-modern::-webkit-scrollbar-thumb {
+  background-color: rgba(19, 19, 19, 0.7);
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+.scrollbar-modern:hover::-webkit-scrollbar-thumb {
+  background-color: rgba(19, 19, 19, 0.7);
+}
+
+/* For Firefox */
+.scrollbar-modern {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(19, 19, 19, 0.7) transparent;
+}
+
+.scrollbar-modern:hover {
+  scrollbar-color: rgba(19, 19, 19, 0.7) transparent;
+}

@@ -62,7 +62,7 @@ export default function FlashCard({
         >
           {/* Front of card - Word */}
           <div className="z-20 card-front bg-gradient-to-br from-flashcard-front to-flashcard bg-card border border-border shadow-card hover:shadow-card-hover flex flex-col items-center justify-center p-8 transition-all duration-300">
-            <div className="text-center">
+            <div className="text-center flex flex-col">
               <h2 className="text-3xl font-bold text-foreground mb-4">
                 {word}
               </h2>

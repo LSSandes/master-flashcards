@@ -1,6 +1,8 @@
+import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Trash2 } from "lucide-react";
+import { ConfirmModal } from "@/components/ui/modal";
+import { Trash2, ChartLine } from "lucide-react";
 import { useFlashcards } from "@/hooks/useFlashcards";
 
 const binNames = [
@@ -51,8 +53,24 @@ const formatTimeUntilReview = (nextReview: Date | null) => {
 
 export default function ManageCards() {
   const { cards, deleteCard } = useFlashcards();
-  const handleDelete = (id: string) => {
-    deleteCard(id);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedCardId, setSelectedCardId] = useState<string | null>(null);
+
+  const openDeleteModal = (id: string) => {
+    setSelectedCardId(id);
+    setModalOpen(true);
+  };
+  const confirmDelete = () => {
+    if (selectedCardId) {
+      deleteCard(selectedCardId);
+    }
+    setModalOpen(false);
+    setSelectedCardId(null);
+  };
+
+  const cancelDelete = () => {
+    setModalOpen(false);
+    setSelectedCardId(null);
   };
   return (
     <div className="max-w-6xl mx-auto animate-slide-up">
@@ -78,17 +96,22 @@ export default function ManageCards() {
           </p>
         </div>
       ) : (
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {cards.map((card) => (
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 max-h-[480px] overflow-y-auto px-5 scrollbar-modern">
+          {cards.map((card, num) => (
             <Card
               key={card.id}
               className="p-6 bg-card/80 flex flex-col justify-between backdrop-blur-sm border border-border hover:shadow-card-hover transition-all duration-300 hover:scale-105"
             >
               <div className="flex flex-col justify-between h-full space-y-4">
                 <div className="flex-1">
-                  <h3 className="text-lg font-bold text-foreground mb-2">
-                    {card.word}
-                  </h3>
+                  <div className="text-lg font-bold text-foreground mb-2 flex gap-3">
+                    <div className="text-lg font-bold text-foreground rounded-full border border-white border-dashed px-3 py-1">
+                      {num + 1}
+                    </div>
+                    <p className="text-lg font-bold text-foreground mb-2">
+                      {card.word}
+                    </p>
+                  </div>
                   <p className="text-sm text-muted-foreground line-clamp-3">
                     {card.definition}
                   </p>
@@ -125,7 +148,7 @@ export default function ManageCards() {
                     <div className="flex justify-center items-center gap-3">
                       <button
                         className="bg-red-500 rounded-full p-1"
-                        onClick={() => handleDelete(card.id)}
+                        onClick={() => openDeleteModal(card.id)}
                       >
                         <Trash2 className="w-5 h-5" />
                       </button>
@@ -140,7 +163,8 @@ export default function ManageCards() {
 
       {cards.length > 0 && (
         <div className="mt-8 p-6 bg-card/50 backdrop-blur-sm border border-border rounded-xl">
-          <h3 className="text-lg font-semibold text-foreground mb-4">
+          <h3 className="text-lg font-semibold text-foreground mb-4 flex gap-2">
+            <ChartLine />
             Statistics
           </h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -171,6 +195,13 @@ export default function ManageCards() {
           </div>
         </div>
       )}
+      <ConfirmModal
+        isOpen={modalOpen}
+        title="Delete Flashcard"
+        description="Are you sure you want to delete this flashcard? This action cannot be undone."
+        onConfirm={confirmDelete}
+        onCancel={cancelDelete}
+      />
     </div>
   );
 }

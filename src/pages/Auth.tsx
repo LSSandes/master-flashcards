@@ -13,10 +13,12 @@ import {
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { LogIn, UserRoundPlus } from "lucide-react";
+import { LogIn, UserRoundPlus, EyeClosed, Eye } from "lucide-react";
+
 const Auth = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isShowPassword, setIsShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { toast } = useToast();
@@ -117,7 +119,9 @@ const Auth = () => {
     <div className="min-h-screen flex items-center justify-center bg-login-background p-4">
       <Card className="w-full max-w-md z-10">
         <CardHeader className="text-center">
-          <CardTitle className="text-2xl font-bold select-none">FlashCard Master</CardTitle>
+          <CardTitle className="text-2xl font-bold select-none">
+            FlashCard Master
+          </CardTitle>
           <CardDescription>
             Sign in to your account or create a new one
           </CardDescription>
@@ -155,7 +159,7 @@ const Auth = () => {
                 </div>
                 <Button
                   type="submit"
-                  className="w-full outline-1 outline-dashed outline-purple-500 outline-offset-2"
+                  className="w-full outline-1 outline-dashed outline-purple-500 outline-offset-2 select-none"
                   disabled={loading}
                 >
                   <LogIn />
@@ -164,7 +168,7 @@ const Auth = () => {
               </form>
             </TabsContent>
 
-            <TabsContent value="signup" className="space-y-4">
+            <TabsContent value="signup" className="space-y-4 select-none">
               <form onSubmit={handleSignUp} className="space-y-4">
                 <div className="space-y-2">
                   <Label htmlFor="signup-email">Email</Label>
@@ -177,20 +181,27 @@ const Auth = () => {
                     required
                   />
                 </div>
-                <div className="space-y-2">
+                <div className="space-y-2 relative">
                   <Label htmlFor="signup-password">Password</Label>
                   <Input
                     id="signup-password"
-                    type="password"
+                    type={isShowPassword ? "text" : "password"}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="Create a password"
                     required
                   />
+                  <div
+                    className=" absolute top-9 right-5"
+                    onClick={() => setIsShowPassword(!isShowPassword)}
+                  >
+                    {isShowPassword && <EyeClosed className="w-5 h-5" />}
+                    {!isShowPassword && <Eye className="w-5 h-5" />}
+                  </div>
                 </div>
                 <Button
                   type="submit"
-                  className="w-full outline-1 outline-dashed outline-purple-500 outline-offset-2"
+                  className="w-full outline-1 outline-dashed outline-purple-500 outline-offset-2 "
                   disabled={loading}
                 >
                   <UserRoundPlus />

@@ -197,7 +197,47 @@
   z-index: 1; /* Ensure it's above the background but below the content */
 }
 
+.bg-login-background {
+  position: relative;
+  background-image: url("./assets/login_bg.jpg"); /* Update the path as needed */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.bg-login-background::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.3); /* Adjust opacity and color as needed */
+  z-index: 1; /* Ensure it's above the background but below the content */
+}
+
+.bg-first-background {
+  position: relative;
+  background-image: url("./assets/first_bg.jpg"); /* Update the path as needed */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.bg-first-background::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.3); /* Adjust opacity and color as needed */
+  z-index: 1; /* Ensure it's above the background but below the content */
+}
+
 .relative {
   position: relative; /* To position content above the drop color */
   z-index: 2; /* Ensure your content is above the overlay */
 }
+
+

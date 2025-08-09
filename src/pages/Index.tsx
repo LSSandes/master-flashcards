@@ -10,9 +10,16 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const Index = () => {
-  const [currentView, setCurrentView] = useState<"Study" | "Create" | "Manage">("Study");
+  const [currentView, setCurrentView] = useState<"Study" | "Create" | "Manage">(
+    "Study"
+  );
   const { user, loading: authLoading, isAuthenticated } = useAuth();
-  const { cards, loading: cardsLoading, createCard, updateCard } = useFlashcards();
+  const {
+    cards,
+    loading: cardsLoading,
+    createCard,
+    updateCard,
+  } = useFlashcards();
   const navigate = useNavigate();
 
   const handleCreateCard = async (word: string, definition: string) => {
@@ -41,14 +48,17 @@ const Index = () => {
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background to-secondary p-4">
-        <Card className="w-full max-w-md text-center">
+      <div className="min-h-screen flex items-center justify-center bg-first-background p-4">
+        <Card className="w-full max-w-md text-center z-10">
           <CardHeader>
-            <CardTitle className="text-2xl font-bold">FlashCard Master</CardTitle>
+            <CardTitle className="text-2xl font-bold">
+              FlashCard Master
+            </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <p className="text-muted-foreground">
-              Welcome to FlashCard Master! Sign in to create and study your personal flashcards with spaced repetition.
+              Welcome to FlashCard Master! Sign in to create and study your
+              personal flashcards with spaced repetition.
             </p>
             <Button onClick={() => navigate("/auth")} className="w-full">
               Sign In / Sign Up
@@ -62,8 +72,12 @@ const Index = () => {
   return (
     <div className="min-h-screen  bg-custom-background relative overflow-hidden">
       <div className="relative z-10">
-        <Navigation currentView={currentView} onViewChange={setCurrentView} user={user} />
-        
+        <Navigation
+          currentView={currentView}
+          onViewChange={setCurrentView}
+          user={user}
+        />
+
         <main className="container mx-auto px-4 py-8">
           {currentView === "Study" && (
             <StudyMode cards={cards} onCardAnswered={handleCardAnswered} />
@@ -71,9 +85,7 @@ const Index = () => {
           {currentView === "Create" && (
             <CreateCard onCardCreated={handleCreateCard} />
           )}
-          {currentView === "Manage" && (
-            <ManageCards cards={cards} />
-          )}
+          {currentView === "Manage" && <ManageCards cards={cards} />}
         </main>
       </div>
     </div>

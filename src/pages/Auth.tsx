@@ -13,7 +13,7 @@ import {
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-
+import { LogIn, UserRoundPlus } from "lucide-react";
 const Auth = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -153,7 +153,12 @@ const Auth = () => {
                     required
                   />
                 </div>
-                <Button type="submit" className="w-full" disabled={loading}>
+                <Button
+                  type="submit"
+                  className="w-full outline-1 outline-dashed outline-purple-500 outline-offset-2"
+                  disabled={loading}
+                >
+                  <LogIn />
                   {loading ? "Signing in..." : "Sign In"}
                 </Button>
               </form>
@@ -183,7 +188,12 @@ const Auth = () => {
                     required
                   />
                 </div>
-                <Button type="submit" className="w-full" disabled={loading}>
+                <Button
+                  type="submit"
+                  className="w-full outline-1 outline-dashed outline-purple-500 outline-offset-2"
+                  disabled={loading}
+                >
+                  <UserRoundPlus />
                   {loading ? "Creating account..." : "Sign Up"}
                 </Button>
               </form>

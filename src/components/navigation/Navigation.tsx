@@ -76,7 +76,7 @@ export default function Navigation({
               onClick={() => onViewChange("Study")}
               className={cn(
                 "transition-all duration-300 border-gray-600",
-                currentView === "Study" && "shadow-glow-primary"
+                currentView === "Study" && "shadow-glow-primary outline-1 outline-dashed outline-purple-500 outline-offset-2"
               )}
             >
               <NotebookPen className="w-4 h-4" />
@@ -87,7 +87,7 @@ export default function Navigation({
               onClick={() => onViewChange("Create")}
               className={cn(
                 "transition-all duration-300 border-gray-600",
-                currentView === "Create" && "shadow-glow-primary"
+                currentView === "Create" && "shadow-glow-primary outline-1 outline-dashed outline-purple-500 outline-offset-2"
               )}
             >
               <CalendarPlus2 className="w-4 h-4" />
@@ -98,7 +98,7 @@ export default function Navigation({
               onClick={() => onViewChange("Manage")}
               className={cn(
                 "transition-all duration-300 border-gray-600",
-                currentView === "Manage" && "shadow-glow-primary"
+                currentView === "Manage" && "shadow-glow-primary outline-1 outline-dashed outline-purple-500 outline-offset-2"
               )}
             >
               <FolderOpen className="w-4 h-4" />
@@ -108,7 +108,7 @@ export default function Navigation({
               <Button
                 variant="outline"
                 onClick={signOut}
-                className="ml-4 flex items-center gap-2 border-gray-600"
+                className="ml-4 flex items-center gap-2 border-gray-600 "
               >
                 <LogOut className="w-4 h-4" />
                 Sign Out

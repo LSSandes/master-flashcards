@@ -69,7 +69,7 @@ export default function FlashCard({
               {!isFlipped && (
                 <button
                   onClick={handleShowDefinition}
-                  className="px-6 py-3 bg-gradient-to-r from-primary to-primary-glow text-primary-foreground rounded-lg font-medium hover:shadow-glow-primary transition-all duration-300 transform hover:scale-105 flex gap-3"
+                  className="px-6 py-3 bg-gradient-to-r from-primary to-primary-glow text-primary-foreground rounded-lg font-medium hover:shadow-glow-primary transition-all duration-300 transform hover:scale-105 flex gap-3 outline-1 outline-dashed outline-purple-500 outline-offset-2"
                 >
                   <Eye />
                   Show Definition
@@ -93,13 +93,13 @@ export default function FlashCard({
               <div className="flex gap-4 w-full">
                 <button
                   onClick={() => handleAnswer(false)}
-                  className="flex-1 px-6 py-3 bg-gradient-to-r from-error to-error-glow text-error-foreground rounded-lg font-medium hover:shadow-glow-error transition-all duration-300 transform hover:scale-105 flex gap-2 items-center justify-center"
+                  className="flex-1 px-6 py-3 bg-gradient-to-r from-error to-error-glow text-error-foreground rounded-lg font-medium hover:shadow-glow-error transition-all duration-300 transform hover:scale-105 flex gap-2 items-center justify-center outline-1 outline-dashed outline-red-500 outline-offset-2"
                 >
                   <Ban className="w-4 h-4" />I got it wrong
                 </button>
                 <button
                   onClick={() => handleAnswer(true)}
-                  className="flex-1 px-6 py-3 bg-gradient-to-r from-success to-success-glow text-success-foreground rounded-lg font-medium hover:shadow-glow-success transition-all duration-300 transform hover:scale-105 flex gap-2 items-center justify-center"
+                  className="flex-1 px-6 py-3 bg-gradient-to-r from-success to-success-glow text-success-foreground rounded-lg font-medium hover:shadow-glow-success transition-all duration-300 transform hover:scale-105 flex gap-2 items-center justify-center outline-1 outline-dashed outline-green-500 outline-offset-2"
                 >
                   <CircleCheck className="w-4 h-4" />I got it right
                 </button>

@@ -60,7 +60,7 @@ const Index = () => {
               Welcome to FlashCard Master! Sign in to create and study your
               personal flashcards with spaced repetition.
             </p>
-            <Button onClick={() => navigate("/auth")} className="w-full">
+            <Button onClick={() => navigate("/auth")} className="w-full outline-1 outline-dashed outline-purple-500 outline-offset-2">
               Sign In / Sign Up
             </Button>
           </CardContent>

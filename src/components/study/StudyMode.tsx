@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import FlashCard from "@/components/flashcard/FlashCard";
+import { useFlashcards } from "@/hooks/useFlashcards";
 
 interface CardData {
   id: string;
@@ -11,12 +12,8 @@ interface CardData {
   user_id?: string | null;
 }
 
-interface StudyModeProps {
-  cards: CardData[];
-  onCardAnswered: (cardId: string, correct: boolean) => void;
-}
-
-export default function StudyMode({ cards, onCardAnswered }: StudyModeProps) {
+export default function StudyMode() {
+  const {cards, updateCard } = useFlashcards();
   const [currentCard, setCurrentCard] = useState<CardData | null>(null);
   const [studyQueue, setStudyQueue] = useState<CardData[]>([]);
 
@@ -54,10 +51,10 @@ export default function StudyMode({ cards, onCardAnswered }: StudyModeProps) {
     setCurrentCard(queue[0] || null);
   }, [cards]);
 
-  const handleAnswer = (correct: boolean) => {
+  const handleAnswer = async (correct: boolean) => {
     if (!currentCard) return;
 
-    onCardAnswered(currentCard.id, correct);
+    await updateCard(currentCard.id, correct);
 
     // Move to next card
     const nextQueue = studyQueue.slice(1);

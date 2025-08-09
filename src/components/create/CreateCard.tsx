@@ -1,22 +1,19 @@
-import { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Label } from '@/components/ui/label';
-import { useToast } from '@/hooks/use-toast';
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import { useToast } from "@/hooks/use-toast";
+import { useFlashcards } from "@/hooks/useFlashcards";
 
-interface CreateCardProps {
-  onCardCreated: (word: string, definition: string) => Promise<void>;
-}
-
-export default function CreateCard({ onCardCreated }: CreateCardProps) {
-  const [word, setWord] = useState('');
-  const [definition, setDefinition] = useState('');
+export default function CreateCard() {
+  const { createCard, fetchCards } = useFlashcards();
+  const [word, setWord] = useState("");
+  const [definition, setDefinition] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
     if (!word.trim() || !definition.trim()) {
       toast({
         title: "Missing Information",
@@ -27,13 +24,13 @@ export default function CreateCard({ onCardCreated }: CreateCardProps) {
     }
 
     setIsSubmitting(true);
-    
+
     try {
-      await onCardCreated(word.trim(), definition.trim());
-      setWord('');
-      setDefinition('');
+      await createCard(word.trim(), definition.trim());
+      await fetchCards();
+      setWord("");
+      setDefinition("");
     } catch (error) {
-      // Error handling is done in the hook
     } finally {
       setIsSubmitting(false);
     }
@@ -43,11 +40,15 @@ export default function CreateCard({ onCardCreated }: CreateCardProps) {
     <div className=" max-w-2xl mx-auto animate-slide-up my-10">
       <div className="bg-card/80 backdrop-blur-sm border border-border rounded-2xl p-8 shadow-card">
         <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold text-foreground mb-2">Create New Flashcard</h2>
-          <p className="text-muted-foreground">Add a new word and definition to your study deck</p>
+          <h2 className="text-3xl font-bold text-foreground mb-2">
+            Create New Flashcard
+          </h2>
+          <p className="text-muted-foreground">
+            Add a new word and definition to your study deck
+          </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <div className="space-y-6">
           <div className="space-y-2">
             <Label htmlFor="word" className="text-foreground font-medium">
               Word or Term
@@ -78,13 +79,14 @@ export default function CreateCard({ onCardCreated }: CreateCardProps) {
           </div>
 
           <Button
-            type="submit"
+            type="button"
+            onClick={handleSubmit}
             disabled={isSubmitting || !word.trim() || !definition.trim()}
             className="w-full h-12 text-lg bg-gradient-to-r from-primary to-primary-glow hover:shadow-glow-primary transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
           >
-            {isSubmitting ? 'Creating...' : 'Create Flashcard'}
+            {isSubmitting ? "Creating..." : "Create Flashcard"}
           </Button>
-        </form>
+        </div>
       </div>
     </div>
   );

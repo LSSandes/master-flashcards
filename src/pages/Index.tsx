@@ -14,29 +14,8 @@ const Index = () => {
     "Study"
   );
   const { user, loading: authLoading, isAuthenticated } = useAuth();
-  const {
-    cards,
-    loading: cardsLoading,
-    createCard,
-    updateCard,
-  } = useFlashcards();
+  const { loading: cardsLoading } = useFlashcards();
   const navigate = useNavigate();
-
-  const handleCreateCard = async (word: string, definition: string) => {
-    if (!isAuthenticated) {
-      navigate("/auth");
-      return;
-    }
-    await createCard(word, definition);
-  };
-
-  const handleCardAnswered = (cardId: string, correct: boolean) => {
-    if (!isAuthenticated) {
-      navigate("/auth");
-      return;
-    }
-    updateCard(cardId, correct);
-  };
 
   if (authLoading || cardsLoading) {
     return (
@@ -60,7 +39,10 @@ const Index = () => {
               Welcome to FlashCard Master! Sign in to create and study your
               personal flashcards with spaced repetition.
             </p>
-            <Button onClick={() => navigate("/auth")} className="w-full outline-1 outline-dashed outline-purple-500 outline-offset-2">
+            <Button
+              onClick={() => navigate("/auth")}
+              className="w-full outline-1 outline-dashed outline-purple-500 outline-offset-2"
+            >
               Sign In / Sign Up
             </Button>
           </CardContent>
@@ -79,13 +61,9 @@ const Index = () => {
         />
 
         <main className="container mx-auto px-4 py-8 z-20">
-          {currentView === "Study" && (
-            <StudyMode cards={cards} onCardAnswered={handleCardAnswered} />
-          )}
-          {currentView === "Create" && (
-            <CreateCard onCardCreated={handleCreateCard} />
-          )}
-          {currentView === "Manage" && <ManageCards cards={cards} />}
+          {currentView === "Study" && <StudyMode />}
+          {currentView === "Create" && <CreateCard />}
+          {currentView === "Manage" && <ManageCards />}
         </main>
       </div>
     </div>

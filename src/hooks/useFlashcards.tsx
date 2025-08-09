@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "./useAuth";
 import { useToast } from "@/hooks/use-toast";
+import { features } from "process";
 
 export interface CardData {
   id: string;
@@ -44,6 +45,7 @@ export const useFlashcards = () => {
           variant: "destructive",
         });
       } else {
+        console.log("data================>", data);
         setCards(data || []);
       }
     } catch (error) {
@@ -195,6 +197,49 @@ export const useFlashcards = () => {
     }
   };
 
+  const deleteCard = async (cardId: string) => {
+    if (!isAuthenticated || !user) {
+      toast({
+        title: "Authentication required",
+        description: "Please signin to delete flashcards",
+        variant: "destructive",
+      });
+      return false;
+    }
+
+    try {
+      const { error } = await supabase
+        .from("flashcards")
+        .delete()
+        .eq("id", cardId)
+        .eq("user_id", user.id);
+
+      if (error) {
+        console.error("Error deleting card:", error);
+        toast({
+          title: "Error",
+          description: "Failed to delete flashcard",
+          variant: "destructive",
+        });
+        return false;
+      }
+      await fetchCards();
+      toast({
+        title: "Deleted",
+        description: "Flashcard deleted successfully",
+      });
+      return true;
+    } catch (error) {
+      console.error("Error deleting card:", error);
+      toast({
+        title: "Error",
+        description: "Failed to delete flashcard",
+        variant: "destructive",
+      });
+    }
+    console.log("delete cards----->", cards);
+  };
+
   const checkForNoWords = () => {
     const hasWordsToReview = cards.some((card) => card.bin < 12);
     if (!hasWordsToReview) {
@@ -212,6 +257,7 @@ export const useFlashcards = () => {
     loading,
     createCard,
     updateCard,
+    deleteCard,
     fetchCards,
   };
 };

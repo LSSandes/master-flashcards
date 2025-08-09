@@ -1,19 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-
-interface CardData {
-  id: string;
-  word: string;
-  definition: string;
-  bin: number;
-  incorrect_count: number;
-  next_review: string | null;
-  user_id?: string | null;
-}
-
-interface ManageCardsProps {
-  cards: CardData[];
-}
+import { Trash2 } from "lucide-react";
+import { useFlashcards } from "@/hooks/useFlashcards";
 
 const binNames = [
   "New",
@@ -61,7 +49,11 @@ const formatTimeUntilReview = (nextReview: Date | null) => {
   return `${seconds}s`;
 };
 
-export default function ManageCards({ cards }: ManageCardsProps) {
+export default function ManageCards() {
+  const { cards, deleteCard } = useFlashcards();
+  const handleDelete = (id: string) => {
+    deleteCard(id);
+  };
   return (
     <div className="max-w-6xl mx-auto animate-slide-up">
       <div className="text-center mb-8">
@@ -123,12 +115,21 @@ export default function ManageCards({ cards }: ManageCardsProps) {
                       </Badge>
                     )}
                   </div>
-
-                  <div className="text-xs text-muted-foreground">
-                    Next review:{" "}
-                    {formatTimeUntilReview(
-                      card.next_review ? new Date(card.next_review) : null
-                    )}
+                  <div className="w-full flex justify-between items-center">
+                    <div className="text-xs text-muted-foreground">
+                      Next review:{" "}
+                      {formatTimeUntilReview(
+                        card.next_review ? new Date(card.next_review) : null
+                      )}
+                    </div>
+                    <div className="flex justify-center items-center gap-3">
+                      <button
+                        className="bg-red-500 rounded-full p-1"
+                        onClick={() => handleDelete(card.id)}
+                      >
+                        <Trash2 className="w-5 h-5" />
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>

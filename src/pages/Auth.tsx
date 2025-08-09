@@ -117,7 +117,7 @@ const Auth = () => {
     <div className="min-h-screen flex items-center justify-center bg-login-background p-4">
       <Card className="w-full max-w-md z-10">
         <CardHeader className="text-center">
-          <CardTitle className="text-2xl font-bold">FlashCard Master</CardTitle>
+          <CardTitle className="text-2xl font-bold select-none">FlashCard Master</CardTitle>
           <CardDescription>
             Sign in to your account or create a new one
           </CardDescription>

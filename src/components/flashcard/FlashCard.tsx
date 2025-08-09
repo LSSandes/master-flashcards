@@ -61,7 +61,7 @@ export default function FlashCard({
           )}
         >
           {/* Front of card - Word */}
-          <div className="z-20 card-front bg-gradient-to-br from-flashcard-front to-flashcard bg-card border border-border shadow-card hover:shadow-card-hover flex flex-col items-center justify-center p-8 transition-all duration-300">
+          <div className="z-20 select-none card-front bg-gradient-to-br from-flashcard-front to-flashcard bg-card border border-border shadow-card hover:shadow-card-hover flex flex-col items-center justify-center p-8 transition-all duration-300">
             <div className="text-center flex flex-col">
               <h2 className="text-3xl font-bold text-foreground mb-4">
                 {word}
@@ -82,10 +82,10 @@ export default function FlashCard({
           {/* Back of card - Definition */}
           <div className="z-20 card-back bg-gradient-to-br from-flashcard-back to-flashcard bg-card border border-border shadow-card flex flex-col items-center justify-center p-8">
             <div className="text-center flex-1 flex flex-col justify-center">
-              <h3 className="text-xl font-semibold text-muted-foreground mb-2">
+              <h3 className="text-xl font-semibold text-muted-foreground mb-2 select-none">
                 Definition
               </h3>
-              <p className="text-xl text-foreground mb-8 leading-relaxed">
+              <p className="text-xl text-foreground mb-8 leading-relaxed select-none">
                 {definition}
               </p>
             </div>
@@ -94,13 +94,13 @@ export default function FlashCard({
               <div className="flex gap-4 w-full">
                 <button
                   onClick={() => handleAnswer(false)}
-                  className="flex-1 px-6 py-3 bg-gradient-to-r from-error to-error-glow text-error-foreground rounded-lg font-medium hover:shadow-glow-error transition-all duration-300 transform hover:scale-105 flex gap-2 items-center justify-center outline-1 outline-dashed outline-red-500 outline-offset-2"
+                  className="flex-1 px-6 py-3 select-none bg-gradient-to-r from-error to-error-glow text-error-foreground rounded-lg font-medium hover:shadow-glow-error transition-all duration-300 transform hover:scale-105 flex gap-2 items-center justify-center outline-1 outline-dashed outline-red-500 outline-offset-2"
                 >
                   <Ban className="w-4 h-4" />I got it wrong
                 </button>
                 <button
                   onClick={() => handleAnswer(true)}
-                  className="flex-1 px-6 py-3 bg-gradient-to-r from-success to-success-glow text-success-foreground rounded-lg font-medium hover:shadow-glow-success transition-all duration-300 transform hover:scale-105 flex gap-2 items-center justify-center outline-1 outline-dashed outline-green-500 outline-offset-2"
+                  className="flex-1 px-6 py-3 select-none bg-gradient-to-r from-success to-success-glow text-success-foreground rounded-lg font-medium hover:shadow-glow-success transition-all duration-300 transform hover:scale-105 flex gap-2 items-center justify-center outline-1 outline-dashed outline-green-500 outline-offset-2"
                 >
                   <CircleCheck className="w-4 h-4" />I got it right
                 </button>

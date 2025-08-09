@@ -73,7 +73,7 @@ export default function ManageCards() {
     setSelectedCardId(null);
   };
   return (
-    <div className="max-w-6xl mx-auto animate-slide-up">
+    <div className="max-w-6xl mx-auto animate-slide-up select-none">
       <div className="text-center mb-8">
         <h2 className="text-3xl font-bold text-foreground mb-2">
           Manage Flashcards

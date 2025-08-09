@@ -29,12 +29,12 @@ const Index = () => {
     return (
       <div className="min-h-screen flex items-center justify-center bg-first-background lg:p-32 p-4">
         <div className=" text-center z-10 flex flex-col gap-10">
-          <div className="lg:text-7xl text-4xl font-bold p-4 max-w-4xl lg:text-left text-center">
+          <div className="lg:text-7xl text-4xl font-bold p-4 max-w-4xl lg:text-left text-center select-none">
             Learn new language with master flashcards
           </div>
 
           <div className="space-y-4 flex flex-col gap-5 items-center justify-start">
-            <p className="lg:text-2xl text-lg max-w-2xl text-center">
+            <p className="lg:text-2xl text-lg max-w-2xl text-center select-none">
               Welcome to FlashCard Master! Sign in to create and study your
               personal flashcards with spaced repetition.
             </p>

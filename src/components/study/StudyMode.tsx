@@ -68,10 +68,10 @@ export default function StudyMode() {
         <div className="w-32 h-32 bg-muted/50 rounded-full flex items-center justify-center mx-auto mb-6">
           <span className="text-6xl">🧠</span>
         </div>
-        <h2 className="text-3xl font-bold text-foreground mb-4">
+        <h2 className="text-3xl font-bold text-foreground mb-4 select-none">
           Welcome to Cognition Cards!
         </h2>
-        <p className="text-lg text-muted-foreground mb-8 max-w-md mx-auto">
+        <p className="text-lg text-muted-foreground mb-8 max-w-md mx-auto select-none">
           Create your first flashcard to start your learning journey with spaced
           repetition.
         </p>
@@ -108,7 +108,7 @@ export default function StudyMode() {
         <h2 className="text-3xl font-bold text-foreground mb-4">
           All Caught Up!
         </h2>
-        <p className="text-lg text-muted-foreground mb-8 max-w-md mx-auto">
+        <p className="text-lg text-muted-foreground mb-8 max-w-md mx-auto select-none">
           You are temporarily done; please come back later to review more words.
         </p>
       </div>
@@ -116,12 +116,12 @@ export default function StudyMode() {
   }
 
   return (
-    <div className="max-w-4xl mx-auto py-8 animate-slide-up">
+    <div className="max-w-4xl mx-auto py-8 animate-slide-up ">
       <div className="text-center mb-8 ">
-        <h2 className="text-3xl font-bold text-foreground mb-2">
+        <h2 className="text-3xl font-bold text-foreground mb-2 select-none">
           Study Session
         </h2>
-        <p className="text-muted-foreground">
+        <p className="text-muted-foreground select-none">
           {studyQueue.length} card{studyQueue.length !== 1 ? "s" : ""} remaining
         </p>
       </div>

@@ -27,26 +27,26 @@ const Index = () => {
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-first-background p-4">
-        <Card className="w-full max-w-md text-center z-10">
-          <CardHeader>
-            <CardTitle className="text-2xl font-bold">
-              FlashCard Master
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <p className="text-muted-foreground">
+      <div className="min-h-screen flex items-center justify-center bg-first-background lg:p-32 p-4">
+        <div className=" text-center z-10 flex flex-col gap-10">
+          <div className="lg:text-7xl text-4xl font-bold p-4 max-w-4xl text-left">
+            Learn new language with master flashcards
+          </div>
+
+          <div className="space-y-4 flex flex-col gap-5 items-center justify-start">
+            <p className="lg:text-2xl text-lg max-w-2xl text-center">
               Welcome to FlashCard Master! Sign in to create and study your
               personal flashcards with spaced repetition.
             </p>
             <Button
               onClick={() => navigate("/auth")}
-              className="w-full outline-1 outline-dashed outline-purple-500 outline-offset-2"
+              className="w-[200px] outline-1 outline-dashed outline-purple-500 outline-offset-2"
             >
-              Sign In / Sign Up
+              Get Started
             </Button>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
+        <div className="flex-1 "></div>
       </div>
     );
   }

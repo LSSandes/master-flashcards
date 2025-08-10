@@ -33,8 +33,8 @@ const Index = () => {
             Learn new language with master flashcards
           </div>
 
-          <div className="space-y-4 flex flex-col gap-5 items-center justify-start">
-            <p className="lg:text-2xl text-lg max-w-2xl text-center select-none">
+          <div className="space-y-4 flex flex-col gap-5 items-start justify-start">
+            <p className="lg:text-2xl text-lg max-w-2xl text-start select-none">
               Welcome to FlashCard Master! Sign in to create and study your
               personal flashcards with spaced repetition.
             </p>

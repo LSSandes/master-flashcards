@@ -240,6 +240,55 @@ export const useFlashcards = () => {
     console.log("delete cards----->", cards);
   };
 
+  const editCard = async (cardId: string, word: string, definition: string) => {
+    if (!isAuthenticated || !user) {
+      toast({
+        title: "Authentication required",
+        description: "Please sign in to edit flashcards",
+        variant: "destructive",
+      });
+      return false;
+    }
+    console.log("0000000000000---->", cardId, word, definition);
+    try {
+      const { error } = await supabase
+        .from("flashcards")
+        .update({
+          word,
+          definition,
+        })
+        .eq("id", cardId)
+        .eq("user_id", user.id);
+
+      if (error) {
+        console.error("Error updating flashcard:", error);
+        toast({
+          title: "Error",
+          description: "Failed to update flashcard",
+          variant: "destructive",
+        });
+        return false;
+      }
+
+      await fetchCards();
+
+      toast({
+        title: "Success!",
+        description: "Flashcard updated successfully",
+      });
+
+      return true;
+    } catch (error) {
+      console.error("Error updating flashcard:", error);
+      toast({
+        title: "Error",
+        description: "Failed to update flashcard",
+        variant: "destructive",
+      });
+      return false;
+    }
+  };
+
   const checkForNoWords = () => {
     const hasWordsToReview = cards.some((card) => card.bin < 12);
     if (!hasWordsToReview) {
@@ -258,6 +307,7 @@ export const useFlashcards = () => {
     createCard,
     updateCard,
     deleteCard,
+    editCard,
     fetchCards,
   };
 };

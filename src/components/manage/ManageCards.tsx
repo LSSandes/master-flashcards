@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ConfirmModal } from "@/components/ui/modal";
-import { Trash2, ChartLine } from "lucide-react";
+import { DeleteConfirmModal } from "@/components/ui/deletemodal";
+import { UpdateConfirmModal } from "@/components/ui/updatemodal";
+import { Trash2, ChartLine, PencilLine } from "lucide-react";
 import { useFlashcards } from "@/hooks/useFlashcards";
 
 const binNames = [
@@ -52,24 +53,45 @@ const formatTimeUntilReview = (nextReview: Date | null) => {
 };
 
 export default function ManageCards() {
-  const { cards, deleteCard } = useFlashcards();
-  const [modalOpen, setModalOpen] = useState(false);
+  const { cards, deleteCard, editCard } = useFlashcards();
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [updateModalOpen, setUpdateModalOpen] = useState(false);
   const [selectedCardId, setSelectedCardId] = useState<string | null>(null);
+  const [editWord, setEditWord] = useState("");
+  const [editDefinition, setEditDefinition] = useState("");
 
   const openDeleteModal = (id: string) => {
     setSelectedCardId(id);
-    setModalOpen(true);
+    setDeleteModalOpen(true);
   };
   const confirmDelete = () => {
     if (selectedCardId) {
       deleteCard(selectedCardId);
     }
-    setModalOpen(false);
+    setDeleteModalOpen(false);
+    setSelectedCardId(null);
+  };
+  const cancelDelete = () => {
+    setDeleteModalOpen(false);
     setSelectedCardId(null);
   };
 
-  const cancelDelete = () => {
-    setModalOpen(false);
+  const openUpdateModal = (id: string, word: string, definition: string) => {
+    setEditWord(word);
+    setEditDefinition(definition);
+    setSelectedCardId(id);
+    setUpdateModalOpen(true);
+  };
+  const confirmUpdate = () => {
+    console.log("-----------");
+    if (selectedCardId) {
+      editCard(selectedCardId, editWord, editDefinition);
+    }
+    setUpdateModalOpen(false);
+    setSelectedCardId(null);
+  };
+  const cancelUpdate = () => {
+    setUpdateModalOpen(false);
     setSelectedCardId(null);
   };
   return (
@@ -96,7 +118,7 @@ export default function ManageCards() {
           </p>
         </div>
       ) : (
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 max-h-[480px] overflow-y-auto px-5 scrollbar-modern">
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 max-h-[480px] overflow-y-auto px-5 py-2 scrollbar-modern">
           {cards.map((card, num) => (
             <Card
               key={card.id}
@@ -119,7 +141,7 @@ export default function ManageCards() {
                 <div className="space-y-4 flex-col justify-between">
                   <div className="flex flex-wrap gap-2">
                     <Badge variant="outline" className={getBinColor(card.bin)}>
-                      {binNames[card.bin] || "Unknown"}
+                      🕛 {binNames[card.bin] || "Unknown"}
                     </Badge>
 
                     {card.incorrect_count != 11 ? (
@@ -151,6 +173,14 @@ export default function ManageCards() {
                         onClick={() => openDeleteModal(card.id)}
                       >
                         <Trash2 className="w-5 h-5" />
+                      </button>
+                      <button
+                        className="bg-green-500 rounded-full p-1"
+                        onClick={() =>
+                          openUpdateModal(card.id, card.word, card.definition)
+                        }
+                      >
+                        <PencilLine className="w-5 h-5" />
                       </button>
                     </div>
                   </div>
@@ -195,12 +225,23 @@ export default function ManageCards() {
           </div>
         </div>
       )}
-      <ConfirmModal
-        isOpen={modalOpen}
+      <DeleteConfirmModal
+        isOpen={deleteModalOpen}
         title="Delete Flashcard"
         description="Are you sure you want to delete this flashcard? This action cannot be undone."
         onConfirm={confirmDelete}
         onCancel={cancelDelete}
+      />
+      <UpdateConfirmModal
+        isOpen={updateModalOpen}
+        title="Update Flashcard"
+        description="Are you sure you want to update this falshcard?"
+        word={editWord}
+        definition={editDefinition}
+        setWord={setEditWord}
+        setDefinition={setEditDefinition}
+        onConfirm={confirmUpdate}
+        onCancel={cancelUpdate}
       />
     </div>
   );

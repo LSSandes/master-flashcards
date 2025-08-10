@@ -6,7 +6,7 @@ interface ModalProps {
   onCancel: () => void;
 }
 
-export function ConfirmModal({
+export function DeleteConfirmModal({
   isOpen,
   title,
   description,

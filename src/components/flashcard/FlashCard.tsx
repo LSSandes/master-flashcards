@@ -69,11 +69,13 @@ export default function FlashCard({
               <div className="w-16 h-0.5 bg-gradient-to-r from-primary to-primary-glow mx-auto mb-6"></div>
               {!isFlipped && (
                 <button
+                  className="relative w-full px-4 py-2 font-bold text-white rounded-[20px] bg-purple-500 text-base shadow-[inset_-1px_-1px_3px_white] cursor-pointer overflow-hidden flex justify-center gap-2"
                   onClick={handleShowDefinition}
-                  className="px-6 py-3 bg-gradient-to-r from-primary to-primary-glow text-primary-foreground rounded-lg font-medium hover:shadow-glow-primary transition-all duration-300 transform hover:scale-105 flex gap-3 outline-1 outline-dashed outline-purple-500 outline-offset-2"
                 >
                   <Eye />
                   Show Definition
+                  {/* Shiny overlay */}
+                  <span className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white/50 to-transparent animate-shine" />
                 </button>
               )}
             </div>

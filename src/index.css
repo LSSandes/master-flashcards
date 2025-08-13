@@ -199,7 +199,7 @@
 
 .bg-login-background {
   position: relative;
-  background-image: url("./assets/login_bg.jpg"); /* Update the path as needed */
+  background-image: url("./assets/login_bg.webp"); /* Update the path as needed */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -218,7 +218,7 @@
 
 .bg-first-background {
   position: relative;
-  background-image: url("./assets/first_bg.jpg"); /* Update the path as needed */
+  background-image: url("./assets/first_bg.webp"); /* Update the path as needed */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

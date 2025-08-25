@@ -1,5 +1,5 @@
 # Hiring FlashCard Mini Project (Jack Ryan Moes) For ShortForm
-📩dev.jackryanmoes950816@gmail.com
+📩moes.jackryan@outlook.com
 
 A flashcard-based spaced repetition learning app to help users retain knowledge over time.
 
